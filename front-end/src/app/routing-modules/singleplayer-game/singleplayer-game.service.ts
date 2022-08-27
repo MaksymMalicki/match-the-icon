@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { CardsDeckService } from '../../../shared/services/cards-deck.service';
 import { Icon } from '../../shared-interfaces/icon.interface';
 
+const minIconSize = 50;
+const maxIconSize = 80;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +18,7 @@ export class SingleplayerGameService {
 
   private icons = [
     '⌚',
-    '⌛',
+    '🔊',
     '☔',
     '☕',
     '☝',
@@ -90,7 +93,7 @@ export class SingleplayerGameService {
   }
 
   private static generateIconSize(): number {
-    return Math.floor(Math.random() * 130);
+    return Math.floor(Math.random() * (maxIconSize - minIconSize) + minIconSize);
   }
 
   public getCardsDeck(): Icon[][] {
