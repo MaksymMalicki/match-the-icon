@@ -3,7 +3,8 @@
     <div
       *ngFor="let icon of cardIcons | slice: 0: 3"
       (click)="emitSelectedIcon(icon)"
-      class="icon"
+      [style.transform]="'rotate('+icon.rotation+'deg)'"
+      [ngStyle]="{'font-size.px': icon.size}"
     >
       {{icon.hex}}
     </div>
@@ -12,7 +13,8 @@
     <div
       *ngFor="let icon of cardIcons | slice: 3: 5"
       (click)="emitSelectedIcon(icon)"
-      class="icon"
+      [style.transform]="'rotate('+icon.rotation+'deg)'"
+      [ngStyle]="{'font-size.px': icon.size}"
     >
       {{icon.hex}}
     </div>
@@ -21,7 +23,8 @@
     <div
       *ngFor="let icon of cardIcons | slice: 5: 8"
       (click)="emitSelectedIcon(icon)"
-      class="icon"
+      [style.transform]="'rotate('+icon.rotation+'deg)'"
+      [ngStyle]="{'font-size.px': icon.size}"
     >
       {{icon.hex}}
     </div>
