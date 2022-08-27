@@ -1,0 +1,29 @@
+<div class="card-container">
+  <div class="column">
+    <div
+      *ngFor="let icon of cardIcons | slice: 0: 3"
+      (click)="emitSelectedIcon(icon)"
+      class="icon"
+    >
+      {{icon.hex}}
+    </div>
+  </div>
+  <div class="column">
+    <div
+      *ngFor="let icon of cardIcons | slice: 3: 5"
+      (click)="emitSelectedIcon(icon)"
+      class="icon"
+    >
+      {{icon.hex}}
+    </div>
+  </div>
+  <div class="column">
+    <div
+      *ngFor="let icon of cardIcons | slice: 5: 8"
+      (click)="emitSelectedIcon(icon)"
+      class="icon"
+    >
+      {{icon.hex}}
+    </div>
+  </div>
+</div>

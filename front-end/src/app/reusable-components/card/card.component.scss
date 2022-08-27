@@ -1,0 +1,20 @@
+.card-container{
+  display: flex;
+  flex-flow: row;
+  border-radius: 50%;
+  border: solid 1px black;
+  width: 350px;
+  padding: 50px;
+  justify-content: space-around;
+}
+
+.column{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 350px;
+}
+
+.icon{
+  font-size: 70px;
+}

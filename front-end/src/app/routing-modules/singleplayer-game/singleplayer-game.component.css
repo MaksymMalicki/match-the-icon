@@ -1,0 +1,6 @@
+.game-container{
+  display: flex;
+  margin: 100px auto 0;
+  width: 70%;
+  justify-content: space-around;
+}
