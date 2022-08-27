@@ -17,7 +17,4 @@ contract MatchingGameTest is Test {
 
         bytes32 hashedAnswer = keccak256(abi.encodePacked(salt, answerChain));
     }
-    function testExample() public {
-        assertTrue(true);
-    }
 }
