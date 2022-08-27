@@ -1,3 +1,9 @@
+@use 'assets/styles/color-palette';
+
 *{
   font-family: 'Nunito', sans-serif;
+}
+
+body{
+  background-color: #FFFBDB;
 }
