@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CardsDeckService } from '../../../shared/services/cards-deck.service';
 import { Icon } from '../../shared-interfaces/icon.interface';
 import { SingleplayerGameService } from './singleplayer-game.service';
 
@@ -9,6 +10,7 @@ import { SingleplayerGameService } from './singleplayer-game.service';
 export class SingleplayerGameComponent implements OnInit {
   constructor(
     public gameService: SingleplayerGameService,
+    public cardsDeckService: CardsDeckService,
   ) { }
 
   ngOnInit(): void {

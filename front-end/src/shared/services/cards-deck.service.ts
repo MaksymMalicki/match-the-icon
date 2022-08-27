@@ -15,13 +15,13 @@ export class CardsDeckService {
     for (let i = 0; i < n + 1; i++) {
       card.push(i);
     }
-    cards.push(this.shuffleFisherYates(card));
+    cards.push(card);
     for (let j = 0; j < n; j++) {
       card = [];
       for (let k = 0; k < n; k++) {
         card.push(n + 1 + n * j + k);
       }
-      cards.push(this.shuffleFisherYates(card));
+      cards.push(card);
     }
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < n; j++) {
@@ -30,7 +30,7 @@ export class CardsDeckService {
         for (let k = 0; k < n; k++) {
           card.push(n+1+n*k+(i*k+j)%n);
         }
-        cards.push(this.shuffleFisherYates(card));
+        cards.push(card);
       }
     }
     return cards;
