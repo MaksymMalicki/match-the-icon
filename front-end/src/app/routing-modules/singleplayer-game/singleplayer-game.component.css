@@ -1,7 +1,12 @@
 .game-container{
   display: flex;
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   width: 70%;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.timer-container{
+  display: flex;
+  justify-content: center;
 }

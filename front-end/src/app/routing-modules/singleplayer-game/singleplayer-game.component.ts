@@ -7,7 +7,6 @@ import { SingleplayerGameService } from './singleplayer-game.service';
   styleUrls: ['./singleplayer-game.component.css']
 })
 export class SingleplayerGameComponent implements OnInit {
-
   constructor(
     public gameService: SingleplayerGameService,
   ) { }
@@ -17,7 +16,12 @@ export class SingleplayerGameComponent implements OnInit {
   }
 
   public checkIfMatchOccurred(icon: Icon): void {
-    console.log(icon);
+    console.log(this.gameService.gameStarted)
+    if(!this.gameService.gameStarted){
+      this.gameService.gameStarted$.next(true);
+    } else if(this.gameService.gameStarted && this.gameService.gameCards.length > 10){
+      this.gameService.gameStarted$.next(false);
+    }
     this.gameService.checkIfMatchOccurred(icon);
   }
 }

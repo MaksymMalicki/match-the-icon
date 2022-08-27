@@ -7,3 +7,6 @@
     (selectedIcon)="checkIfMatchOccurred($event)"
   ></app-card>
 </div>
+<div class="timer-container">
+  <app-timer [timerStart]="gameService.gameStarted$"></app-timer>
+</div>
