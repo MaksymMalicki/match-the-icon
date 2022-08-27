@@ -12,7 +12,12 @@ contract MatchingGameTest is Test {
 
         // random salt to be added to the answer 
         // it will make it harder to retrieve the answer 
-
+        // from prehashed data
         bytes32 salt = bytes32("2163126323687461423612846");
+
+        bytes32 hashedAnswer = keccak256(abi.encodePacked(salt, answerChain));
+    }
+    function testExample() public {
+        assertTrue(true);
     }
 }
