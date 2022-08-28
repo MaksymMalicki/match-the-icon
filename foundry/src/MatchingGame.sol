@@ -32,6 +32,10 @@ contract MatchingGame {
         gameScores[msg.sender] = scoredPoints;
     }
 
+    function stake(uint256 amountOfEther) public payable {
+        stakings[msg.sender] += amountOfEther;
+    }
+
     fallback() external payable {}
 
     receive() external payable {
