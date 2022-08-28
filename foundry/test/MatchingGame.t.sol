@@ -57,6 +57,10 @@ contract MatchingGameTest is Test {
         assertEq(game.gameScores(address(this)), 5_000);
     }
 
+    function testStartingBalance() public {
+        assertEq(game.balances(address(this)), 0);
+    }
+
     fallback() external payable {}
 
     receive() external payable {}
