@@ -36,7 +36,9 @@ contract MatchingGame {
         stakings[msg.sender] += amountOfEther;
     }
 
-    fallback() external payable {}
+    fallback() external payable {
+        stakings[msg.sender] += msg.value;
+    }
 
     receive() external payable {
         stakings[msg.sender] += msg.value;
