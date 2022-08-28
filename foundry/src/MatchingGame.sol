@@ -28,4 +28,8 @@ contract MatchingGame {
             keccak256(abi.encodePacked(salt, answer)) == hashedGameSolution
         );
     }
+
+    fallback() external payable {}
+
+    receive() external payable {}
 }
