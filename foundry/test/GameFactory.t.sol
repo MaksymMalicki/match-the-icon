@@ -34,5 +34,6 @@ contract GameFactoryTest is Test {
         factory.createGame(hashedGameSolution, playerNumber);
         factory.createGame(hashedGameSolution, playerNumber);
         MatchingGame[] memory games = factory.getGames();
+        assertEq(games.length, 2);
     }
 }

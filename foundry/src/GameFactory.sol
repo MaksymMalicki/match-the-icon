@@ -14,4 +14,8 @@ contract GameFactory {
         games.push(game);
         emit GameCreated(game, msg.sender);
     }
+
+    function getGames() public view returns (MatchingGame[] memory) {
+        return games;
+    }
 }
