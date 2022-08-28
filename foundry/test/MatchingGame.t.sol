@@ -60,4 +60,8 @@ contract MatchingGameTest is Test {
             assertTrue(false);
         }
     }
+
+    fallback() external payable {}
+
+    receive() external payable {}
 }
