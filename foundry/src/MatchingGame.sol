@@ -10,6 +10,7 @@ contract MatchingGame {
     bytes32 public salt = bytes32("182731238");
     bytes32 public hashedGameSolution;
     mapping(address => uint16) public gameScores;
+    mapping(address => uint256) public stakings;
 
     constructor(bytes32 _hashedGameSolution) {
         hashedGameSolution = _hashedGameSolution;
