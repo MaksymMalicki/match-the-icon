@@ -36,6 +36,13 @@ contract MatchingGame {
         gameScores[msg.sender] = scoredPoints;
     }
 
+    function withdraw() public {
+        require(stakings[msg.sender] > 0);
+        uint256 valueToSend = stakings[msg.sender];
+        stakings[msg.sender] = 0;
+        payable(address(msg.sender)).transfer(valueToSend);
+    }
+
     function stake(uint256 amountOfEther) public payable {
         stakings[msg.sender] += amountOfEther;
         emit Staked(msg.sender, amountOfEther);

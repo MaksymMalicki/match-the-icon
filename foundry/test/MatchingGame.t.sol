@@ -93,7 +93,7 @@ contract MatchingGameTest is Test {
         uint256 startBalance = address(this).balance;
         game.stake(0.1 ether);
         game.withdraw();
-        assertEq(address(this).balance, startBalance + 0.1 ether);
+        assertEq(address(this).balance, startBalance);
     }
 
     fallback() external payable {}
