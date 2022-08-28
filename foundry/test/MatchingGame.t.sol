@@ -52,22 +52,22 @@ contract MatchingGameTest is Test {
         }
     }
 
-    function testUpdateMappingAfterSubmitting() public {
+    function testUpdateGameScoreAfterSubmitting() public {
         game.submitAnswer("123456789", 5_000);
         assertEq(game.gameScores(address(this)), 5_000);
     }
 
-    function testStartingBalance() public {
+    function testStartingStakingBalance() public {
         assertEq(game.stakings(address(this)), 0);
     }
 
-    function testUpdatingBalanceAfterSendingEther() public {
+    function testUpdatingStakingBalanceAfterSendingEther() public {
         vm.deal(address(this), 1 ether);
         address(game).call{value: 0.05 ether}("");
         assertEq(game.stakings(address(this)), 0.5 ether);
     }
 
-    function testUpdatingBalanceAfterCallingStake() public {
+    function testUpdatingStakingBalanceAfterCallingStake() public {
         vm.deal(address(this), 1 ether);
         game.stake(0.5 ether);
         assertEq(game.stakings(address(this)), 0.5 ether);
