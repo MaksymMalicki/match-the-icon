@@ -32,8 +32,8 @@ contract MatchingGameTest is Test {
 
     /**
      * @dev Wrong answer is submitted:
-     * - test fails if game instance accept the wrong answer
-     * - test succeds if game instance revert
+     * - test fails if the game instance accept the wrong answer
+     * - test succeeds if the game instance revert
      */
     function testGameFail() public {
         try game.submitAnswer("135856772") {
