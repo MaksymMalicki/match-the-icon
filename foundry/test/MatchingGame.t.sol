@@ -64,7 +64,7 @@ contract MatchingGameTest is Test {
     function testUpdatingBalanceAfterSendingEther() public {
         vm.deal(address(this), 1 ether);
         address(game).call{value: 0.05 ether}("");
-        assertEq(game.stakings(address(this)), 50_000_000_000_000_000);
+        assertEq(game.stakings(address(this)), 0.5 ether);
     }
 
     function testUpdatingBalanceAfterCallingStake() public {
