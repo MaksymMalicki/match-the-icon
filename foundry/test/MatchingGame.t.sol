@@ -24,6 +24,8 @@ contract MatchingGameTest is Test {
         bytes32 hashedAnswerChain = keccak256(
             abi.encodePacked(salt, answerChain)
         );
+        /// @dev create game instance
+        game = new MatchingGame(hashedAnswerChain);
     }
 
     function testExample() public {
