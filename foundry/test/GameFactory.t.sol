@@ -11,4 +11,16 @@ contract GameFactoryTest is Test {
     function setUp() public {
         factory = new GameFactory();
     }
+
+    function testCreateGame() public {
+        uint8 playerNumber = 2;
+        string memory gameSolution = "123456789";
+        bytes32 salt = bytes32("182731238");
+        bytes32 hashedGameSolution = keccak256(
+            abi.encodePacked(salt, gameSolution)
+        );
+        factory.createGame(hashedGameSolution, playerNumber);
+        MatchingGame game = factory.games(0);
+        assertEq(keccak256(game.playerNumber()), keccak256(playerNumber));
+    }
 }

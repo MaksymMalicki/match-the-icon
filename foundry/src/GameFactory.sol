@@ -4,5 +4,14 @@ pragma solidity 0.8.13;
 import "./MatchingGame.sol";
 
 contract GameFactory {
+    MatchingGame[] public games;
+    event GameCreated(MatchingGame indexed game, address indexed creator);
+
     constructor() {}
+
+    function createGame(bytes32 gameSolution, uint8 playerNumber) public {
+        MatchingGame game = new MatchingGame(gameSolution, playerNumber);
+        games.push(game);
+        emit GameCreated(game, msg.sender);
+    }
 }
