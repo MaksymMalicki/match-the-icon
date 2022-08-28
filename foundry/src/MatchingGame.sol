@@ -13,4 +13,15 @@ contract MatchingGame {
     constructor(bytes32 _hashedAnswerChain) {
         hashedAnswerChain = _hashedAnswerChain;
     }
+
+    /**
+     * @notice This function is used to compare the user's answer
+     * with the correct solution
+     * @dev Function first needs to convert answer string to the Keccak256 hash
+     *
+     * Two hashes are later compared together and:
+     * if they match -> user provided right answer
+     * if they don't match -> user provided wrong answer
+     */
+    function submitAnswer(string calldata answer) public {}
 }
