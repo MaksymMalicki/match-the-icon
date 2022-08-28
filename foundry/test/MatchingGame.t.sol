@@ -5,6 +5,8 @@ import "forge-std/Test.sol";
 import "../src/MatchingGame.sol";
 
 contract MatchingGameTest is Test {
+    MatchingGame public game;
+
     function setUp() public {
         /**
          * @notice Calculate hash of the right answer to prevent players
