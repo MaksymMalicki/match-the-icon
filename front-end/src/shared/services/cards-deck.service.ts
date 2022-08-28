@@ -35,4 +35,14 @@ export class CardsDeckService {
     }
     return cards;
   }
+
+
+  public shuffleFisherYates(array: any[]): any[] {
+    let i = array.length;
+    while (--i > 0) {
+      let randIndex = Math.floor(Math.random() * (i + 1));
+      [array[randIndex], array[i]] = [array[i], array[randIndex]];
+    }
+    return array;
+  }
 }

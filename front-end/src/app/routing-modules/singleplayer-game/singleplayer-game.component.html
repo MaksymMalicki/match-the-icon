@@ -1,9 +1,12 @@
 <div class="game-container">
   <app-card
-    [cardIcons]="gameService.gameCards[0]"
+    [cardIcons]="cardsDeckService.shuffleFisherYates(gameService.gameCards[0])"
   ></app-card>
   <app-card
-    [cardIcons]="gameService.playerCards[0]"
+    [cardIcons]="cardsDeckService.shuffleFisherYates(gameService.playerCards[0])"
     (selectedIcon)="checkIfMatchOccurred($event)"
   ></app-card>
+</div>
+<div class="timer-container">
+  <app-timer [timerStart]="gameService.gameStarted$"></app-timer>
 </div>

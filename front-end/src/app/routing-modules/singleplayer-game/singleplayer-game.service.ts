@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CardsDeckService } from '../../../shared/services/cards-deck.service';
 import { Icon } from '../../shared-interfaces/icon.interface';
 
@@ -78,14 +79,10 @@ export class SingleplayerGameService {
   ];
   public playerCards: Icon[][];
   public gameCards: Icon[][] = [];
+  public gameStarted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  private static shuffleFisherYates(array: any[]): any[] {
-    let i = array.length;
-    while (--i > 0) {
-      let randIndex = Math.floor(Math.random() * (i + 1));
-      [array[randIndex], array[i]] = [array[i], array[randIndex]];
-    }
-    return array;
+  public get gameStarted(): boolean{
+    return this.gameStarted$.getValue();
   }
 
   private static generateIconRotation(): number {
@@ -110,15 +107,16 @@ export class SingleplayerGameService {
   }
 
   private getNewGameTopdeck(): void {
+    console.log(this.gameCards, this.playerCards);
     if (this.playerCards.length > 0) {
-      console.log(this.gameCards);
       this.gameCards.unshift(this.playerCards.shift());
     }
   }
 
   public generateNewGame(): void {
-    this.playerCards = SingleplayerGameService.shuffleFisherYates(this.getCardsDeck());
+    this.playerCards = this.cardsDeckService.shuffleFisherYates(this.getCardsDeck());
     this.gameCards = [];
+    console.log(this.gameCards, this.playerCards);
     this.getNewGameTopdeck();
   }
 
@@ -129,5 +127,4 @@ export class SingleplayerGameService {
       ? this.getNewGameTopdeck()
       : null;
   }
-
 }
