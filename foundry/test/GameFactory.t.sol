@@ -21,6 +21,6 @@ contract GameFactoryTest is Test {
         );
         factory.createGame(hashedGameSolution, playerNumber);
         MatchingGame game = factory.games(0);
-        assertEq(keccak256(game.playerNumber()), keccak256(playerNumber));
+        assertEq(game.hashedGameSolution(), hashedGameSolution);
     }
 }
