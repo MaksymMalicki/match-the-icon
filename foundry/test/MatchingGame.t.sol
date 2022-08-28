@@ -64,12 +64,21 @@ contract MatchingGameTest is Test {
     function testUpdatingStakingBalanceAfterSendingEther() public {
         vm.deal(address(this), 1 ether);
         address(game).call{value: 0.05 ether}("");
-        assertEq(game.stakings(address(this)), 0.5 ether);
+        assertEq(game.stakings(address(this)), 0.05 ether);
     }
 
     function testUpdatingStakingBalanceAfterCallingStake() public {
         vm.deal(address(this), 1 ether);
         game.stake(0.5 ether);
+        assertEq(game.stakings(address(this)), 0.5 ether);
+    }
+
+    function testTriggeringFallback() public {
+        vm.deal(address(this), 1 ether);
+        address(game).call{value: 0.5 ether}(
+            abi.encodeWithSignature("nonExistingFunction()")
+        );
+        emit log_uint(game.stakings(address(this)));
         assertEq(game.stakings(address(this)), 0.5 ether);
     }
 
