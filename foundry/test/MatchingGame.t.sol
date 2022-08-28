@@ -37,7 +37,7 @@ contract MatchingGameTest is Test {
      * - test succeeds if the game instance revert
      */
     function testSubmitWrongAnswer() public {
-        try game.submitAnswer("135856772") {
+        try game.submitAnswer("135856772", 5_000) {
             assertTrue(false);
         } catch {
             assertTrue(true);
@@ -45,7 +45,7 @@ contract MatchingGameTest is Test {
     }
 
     function testSubmitGoodAnswer() public {
-        try game.submitAnswer("123456789") {
+        try game.submitAnswer("123456789", 5_000) {
             assertTrue(true);
         } catch {
             assertTrue(false);
