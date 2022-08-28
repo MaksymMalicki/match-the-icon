@@ -90,7 +90,7 @@ contract MatchingGameTest is Test {
 
     function testEmitEventRoomCreated() public {
         vm.expectEmit(false, false, false, true);
-        emit RoomCreated(address(game), playerNumber);
+        emit RoomCreated(address(game), 2);
         MatchingGame gameInstance = new MatchingGame();
     }
 

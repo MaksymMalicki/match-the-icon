@@ -13,6 +13,7 @@ contract MatchingGame {
     mapping(address => uint256) public stakings;
 
     event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
+    event RoomCreated(address gameInstanceAddress, uint8 playerNumber);
 
     constructor(bytes32 _hashedGameSolution) {
         hashedGameSolution = _hashedGameSolution;
