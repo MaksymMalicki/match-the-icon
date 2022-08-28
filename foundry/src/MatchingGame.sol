@@ -41,11 +41,11 @@ contract MatchingGame {
 
     fallback() external payable {
         stakings[msg.sender] += msg.value;
-        emit Staked(msg.sender, amountOfEther);
+        emit Staked(msg.sender, msg.value);
     }
 
     receive() external payable {
         stakings[msg.sender] += msg.value;
-        emit Staked(msg.sender, amountOfEther);
+        emit Staked(msg.sender, msg.value);
     }
 }
