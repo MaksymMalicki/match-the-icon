@@ -7,6 +7,7 @@ import "../src/MatchingGame.sol";
 
 contract MatchingGameTest is Test {
     MatchingGame public game;
+    event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
 
     function setUp() public {
         /**
@@ -78,6 +79,12 @@ contract MatchingGameTest is Test {
             abi.encodeWithSignature("nonExistingFunction()")
         );
         assertEq(game.stakings(address(this)), 0.5 ether);
+    }
+
+    function testEmitEventStaked() public {
+        vm.expectEmit(false, false, false, true);
+        emit Staked(address(this), 0.5 ether);
+        game.stake(0.5 ether);
     }
 
     fallback() external payable {}

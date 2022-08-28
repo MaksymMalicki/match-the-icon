@@ -12,6 +12,8 @@ contract MatchingGame {
     mapping(address => uint16) public gameScores;
     mapping(address => uint256) public stakings;
 
+    event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
+
     constructor(bytes32 _hashedGameSolution) {
         hashedGameSolution = _hashedGameSolution;
     }
@@ -34,6 +36,7 @@ contract MatchingGame {
 
     function stake(uint256 amountOfEther) public payable {
         stakings[msg.sender] += amountOfEther;
+        emit Staked(msg.sender, amountOfEther);
     }
 
     fallback() external payable {
