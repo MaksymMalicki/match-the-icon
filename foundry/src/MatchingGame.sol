@@ -15,7 +15,7 @@ contract MatchingGame {
     }
 
     /**
-     * @notice This function is used to compare the user's answer
+     * @notice This function is used to submit and compare the user's answer
      * with the correct solution
      * @dev Function first needs to convert answer string to the Keccak256 hash
      *
