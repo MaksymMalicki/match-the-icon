@@ -4,17 +4,18 @@ pragma solidity 0.8.13;
 import "forge-std/Test.sol";
 import "../src/MatchingGame.sol";
 
-/**
- * @dev deal function lets us set the balance of an address
- * @param address address of an account of which we want to modify the balance
- * @param uint256 amount of ether we want to add to that balance
- */
+// /**
+//  * @dev deal function lets us set the balance of an address
+//  * @param address address of an account of which we want to modify the balance
+//  * @param uint256 amount of ether we want to add to that balance
+//  */
 interface CheatCodes {
     function deal(address, uint256) external;
 }
 
 contract MatchingGameTest is Test {
     MatchingGame public game;
+    CheatCodes constant cheats = CheatCodes(HEVM_ADDRESS);
 
     function setUp() public {
         /**
@@ -44,7 +45,7 @@ contract MatchingGameTest is Test {
      * - test fails if the game instance accept the wrong answer
      * - test succeeds if the game instance revert
      */
-    function testGameFail() public {
+    function testSubmitWrongAnswer() public {
         try game.submitAnswer("135856772") {
             assertTrue(false);
         } catch {
