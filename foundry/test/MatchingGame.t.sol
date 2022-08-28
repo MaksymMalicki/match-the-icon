@@ -52,4 +52,12 @@ contract MatchingGameTest is Test {
             assertTrue(true);
         }
     }
+
+    function testSubmitGoodAnswer() public {
+        try game.submitAnswer("123456789") {
+            assertTrue(true);
+        } catch {
+            assertTrue(false);
+        }
+    }
 }
