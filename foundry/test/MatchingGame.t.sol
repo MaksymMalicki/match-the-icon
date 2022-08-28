@@ -8,9 +8,9 @@ import "../src/MatchingGame.sol";
 contract MatchingGameTest is Test {
     MatchingGame public game;
     event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
+    event RoomCreated(address gameInstanceAddress, uint8 playerNumber);
 
     function setUp() public {
-        uint8 memory playerNumber = 2;
         /**
          * @notice Calculate hash of the right answer to prevent players
          * from knowing it during the gameplay
