@@ -30,7 +30,7 @@ contract MatchingGameTest is Test {
         game = new MatchingGame(hashedAnswerChain);
     }
 
-    function testExample() public {
-        assertTrue(true);
+    function testGameFail() public {
+        game.submitAnswer("135856772");
     }
 }
