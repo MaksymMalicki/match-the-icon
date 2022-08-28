@@ -15,8 +15,9 @@ contract MatchingGame {
     event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
     event RoomCreated(address gameInstanceAddress, uint8 playerNumber);
 
-    constructor(bytes32 _hashedGameSolution) {
+    constructor(bytes32 _hashedGameSolution, uint8 _playerNumber) {
         hashedGameSolution = _hashedGameSolution;
+        emit RoomCreated(address(this), _playerNumber);
     }
 
     /**

@@ -11,6 +11,7 @@ contract MatchingGameTest is Test {
     event RoomCreated(address gameInstanceAddress, uint8 playerNumber);
 
     function setUp() public {
+        uint8 playerNumber = 2;
         /**
          * @notice Calculate hash of the right answer to prevent players
          * from knowing it during the gameplay
@@ -30,7 +31,7 @@ contract MatchingGameTest is Test {
             abi.encodePacked(salt, gameSolution)
         );
         /// @dev create game instance
-        game = new MatchingGame(hashedGameSolution);
+        game = new MatchingGame(hashedGameSolution, playerNumber);
 
         vm.deal(address(this), 1 ether);
     }
@@ -86,12 +87,6 @@ contract MatchingGameTest is Test {
         vm.expectEmit(false, false, false, true);
         emit Staked(address(this), 0.5 ether);
         game.stake(0.5 ether);
-    }
-
-    function testEmitEventRoomCreated() public {
-        vm.expectEmit(false, false, false, true);
-        emit RoomCreated(address(game), 2);
-        MatchingGame gameInstance = new MatchingGame();
     }
 
     fallback() external payable {}
