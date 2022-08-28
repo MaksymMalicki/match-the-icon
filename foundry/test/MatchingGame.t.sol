@@ -10,6 +10,7 @@ contract MatchingGameTest is Test {
     event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
 
     function setUp() public {
+        uint8 memory playerNumber = 2;
         /**
          * @notice Calculate hash of the right answer to prevent players
          * from knowing it during the gameplay
@@ -85,6 +86,12 @@ contract MatchingGameTest is Test {
         vm.expectEmit(false, false, false, true);
         emit Staked(address(this), 0.5 ether);
         game.stake(0.5 ether);
+    }
+
+    function testEmitEventRoomCreated() public {
+        vm.expectEmit(false, false, false, true);
+        emit RoomCreated(address(game), playerNumber);
+        MatchingGame gameInstance = new MatchingGame();
     }
 
     fallback() external payable {}
