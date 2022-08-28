@@ -23,5 +23,7 @@ contract MatchingGame {
      * if they match -> user provided right answer
      * if they don't match -> user provided wrong answer
      */
-    function submitAnswer(string calldata answer) public {}
+    function submitAnswer(string calldata answer) public {
+        require(keccak256(abi.encodePacked(salt, answer)) == hashedAnswerChain);
+    }
 }
