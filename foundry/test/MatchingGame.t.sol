@@ -24,7 +24,7 @@ contract MatchingGameTest is Test {
          * the known list of hashes
          *
          * In the game contract game solution will be provided as an argument
-         * to the parameter, so it won't be visible to anyone
+         * to the parameter and then hashed, so it won't be visible to anyone
          *
          * At the end of the game hash of the right answer (gameSolution)
          * will be compared with the hash of the player's answers
