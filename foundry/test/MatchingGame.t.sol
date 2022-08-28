@@ -89,6 +89,13 @@ contract MatchingGameTest is Test {
         game.stake(0.5 ether);
     }
 
+    function testTemporaryWithdraw() public {
+        uint256 startBalance = address(this).balance;
+        game.stake(0.1 ether);
+        game.withdraw();
+        assertEq(address(this).balance, startBalance + 0.1 ether);
+    }
+
     fallback() external payable {}
 
     receive() external payable {}
