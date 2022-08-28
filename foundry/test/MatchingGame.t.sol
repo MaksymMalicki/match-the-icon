@@ -77,7 +77,6 @@ contract MatchingGameTest is Test {
         address(game).call{value: 0.5 ether}(
             abi.encodeWithSignature("nonExistingFunction()")
         );
-        emit log_uint(game.stakings(address(this)));
         assertEq(game.stakings(address(this)), 0.5 ether);
     }
 
