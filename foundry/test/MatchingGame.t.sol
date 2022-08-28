@@ -30,7 +30,16 @@ contract MatchingGameTest is Test {
         game = new MatchingGame(hashedAnswerChain);
     }
 
+    /**
+     * @dev Wrong answer is submitted
+     * test fails if game instance accept the wrong answer
+     * test succeds if game instance revert
+     * */
     function testGameFail() public {
-        game.submitAnswer("135856772");
+        try game.submitAnswer("135856772") {
+            assertTrue(false);
+        } catch {
+            assertTrue(true);
+        }
     }
 }
