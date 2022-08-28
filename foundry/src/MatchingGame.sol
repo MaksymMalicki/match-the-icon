@@ -8,10 +8,10 @@ pragma solidity 0.8.13;
  */
 contract MatchingGame {
     bytes32 public salt = bytes32("182731238");
-    bytes32 public hashedAnswerChain;
+    bytes32 public hashedGameSolution;
 
-    constructor(bytes32 _hashedAnswerChain) {
-        hashedAnswerChain = _hashedAnswerChain;
+    constructor(bytes32 _hashedGameSolution) {
+        hashedGameSolution = _hashedGameSolution;
     }
 
     /**
@@ -24,6 +24,8 @@ contract MatchingGame {
      * if they don't match -> user provided wrong answer
      */
     function submitAnswer(string calldata answer) public {
-        require(keccak256(abi.encodePacked(salt, answer)) == hashedAnswerChain);
+        require(
+            keccak256(abi.encodePacked(salt, answer)) == hashedGameSolution
+        );
     }
 }

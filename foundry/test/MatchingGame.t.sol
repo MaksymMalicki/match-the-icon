@@ -14,26 +14,26 @@ contract MatchingGameTest is Test {
          * @dev Salt is added to prevent retrieveing the answer from
          * the known list of hashes
          *
-         * In the game contract answerChain will be provided as an argument
+         * In the game contract game solution will be provided as an argument
          * to the parameter, so it won't be visible to anyone
          *
-         * At the end of the game hash of the right answer
+         * At the end of the game hash of the right answer (gameSolution)
          * will be compared with the hash of the player's answers
          * to tell if he actually finished the game
          */
-        string memory answerChain = "123456789";
+        string memory gameSolution = "123456789";
         bytes32 salt = bytes32("182731238");
-        bytes32 hashedAnswerChain = keccak256(
-            abi.encodePacked(salt, answerChain)
+        bytes32 hashedGameSolution = keccak256(
+            abi.encodePacked(salt, gameSolution)
         );
         /// @dev create game instance
-        game = new MatchingGame(hashedAnswerChain);
+        game = new MatchingGame(hashedGameSolution);
     }
 
     /**
-     * @dev Wrong answer is submitted
-     * test fails if game instance accept the wrong answer
-     * test succeds if game instance revert
+     * @dev Wrong answer is submitted:
+     * - test fails if game instance accept the wrong answer
+     * - test succeds if game instance revert
      */
     function testGameFail() public {
         try game.submitAnswer("135856772") {
