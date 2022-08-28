@@ -1,29 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { CardsDeckService } from '../../../shared/services/cards-deck.service';
 import { Icon } from '../../shared-interfaces/icon.interface';
 import { SingleplayerGameService } from './singleplayer-game.service';
 
 @Component({
   templateUrl: './singleplayer-game.component.html',
-  styleUrls: ['./singleplayer-game.component.css']
+  styleUrls: ['./singleplayer-game.component.scss']
 })
 export class SingleplayerGameComponent implements OnInit {
+
+  public playerPunishment: number = 0;
+  public time: number = 0;
+  public finalResult: number = 0;
   constructor(
     public gameService: SingleplayerGameService,
-    public cardsDeckService: CardsDeckService,
   ) { }
 
   ngOnInit(): void {
-    this.gameService.generateNewGame();
+    this.gameService.generatePlayerAndGameDecks();
   }
 
-  public checkIfMatchOccurred(icon: Icon): void {
-    console.log(this.gameService.gameStarted)
-    if(!this.gameService.gameStarted){
-      this.gameService.gameStarted$.next(true);
-    } else if(this.gameService.gameStarted && this.gameService.gameCards.length > 10){
-      this.gameService.gameStarted$.next(false);
+  public handleGameStart(): void{
+    this.gameService.startGame();
+    this.finalResult = 0;
+  }
+
+  public checkIfIconsMatchOccurred(icon: Icon): void {
+    if(this.gameService.gameCards.length>10){
+      this.gameService.endGame()
     }
-    this.gameService.checkIfMatchOccurred(icon);
+    if(this.gameService.gameStarted){
+      this.gameService.checkIfIconsMatchOccurred(icon);
+    }
+  }
+
+  public handleGameEnd(finalTime: number): void {
+    this.finalResult = this.gameService.calculateResult(finalTime, this.playerPunishment);
   }
 }

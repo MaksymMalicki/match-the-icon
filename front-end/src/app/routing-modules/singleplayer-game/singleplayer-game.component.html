@@ -1,12 +1,16 @@
 <div class="game-container">
   <app-card
-    [cardIcons]="cardsDeckService.shuffleFisherYates(gameService.gameCards[0])"
+    [cardIcons]="gameService.gameCards[0]"
   ></app-card>
   <app-card
-    [cardIcons]="cardsDeckService.shuffleFisherYates(gameService.playerCards[0])"
-    (selectedIcon)="checkIfMatchOccurred($event)"
+    [cardIcons]="gameService.playerCards[0]"
+    (selectedIcon)="checkIfIconsMatchOccurred($event)"
   ></app-card>
 </div>
-<div class="timer-container">
-  <app-timer [timerStart]="gameService.gameStarted$"></app-timer>
+<div class="game-controls-container">
+  <div *ngIf="!gameService.gameStarted" class="start-game-results-container">
+    <button (click)="handleGameStart()" class="start-game-button">Start the game!</button>
+    <p class="final-result-label"><span class="highlight">Final result:</span> {{finalResult}}</p>
+  </div>
+  <app-timer [timerStart]="gameService.gameStarted$" (gameFinalTimeEmitted)="handleGameEnd($event)" *ngIf="gameService.gameStarted"></app-timer>
 </div>

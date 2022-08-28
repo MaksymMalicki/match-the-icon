@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
@@ -12,6 +12,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   private interval: ReturnType<typeof setInterval>;
   private subSink: Subscription = new Subscription();
   public time: number = 0;
+  @Output() public gameFinalTimeEmitted: EventEmitter<number> = new EventEmitter<number>();
 
   public ngOnInit(): void {
     this.subSink.add(
@@ -25,6 +26,7 @@ export class TimerComponent implements OnInit, OnDestroy {
             );
           } else {
             clearInterval(this.interval);
+            this.gameFinalTimeEmitted.emit(this.time);
             this.time = 0;
           }
         }),
