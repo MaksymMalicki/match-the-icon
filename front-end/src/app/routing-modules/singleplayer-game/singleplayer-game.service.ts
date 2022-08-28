@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CardsDeckService } from '../../../shared/services/cards-deck.service';
 import { Icon } from '../../shared-interfaces/icon.interface';
 
@@ -14,7 +15,6 @@ export class SingleplayerGameService {
     private cardsDeckService: CardsDeckService,
   ) {
   }
-
 
   private icons = [
     '⌚',
@@ -78,14 +78,10 @@ export class SingleplayerGameService {
   ];
   public playerCards: Icon[][];
   public gameCards: Icon[][] = [];
+  public gameStarted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  private static shuffleFisherYates(array: any[]): any[] {
-    let i = array.length;
-    while (--i > 0) {
-      let randIndex = Math.floor(Math.random() * (i + 1));
-      [array[randIndex], array[i]] = [array[i], array[randIndex]];
-    }
-    return array;
+  public get gameStarted(): boolean {
+    return this.gameStarted$.getValue();
   }
 
   private static generateIconRotation(): number {
@@ -99,7 +95,7 @@ export class SingleplayerGameService {
   public getCardsDeck(): Icon[][] {
     const incidenceMatrix: number[][] = this.cardsDeckService.generateDeck(7);
     return incidenceMatrix.map(
-      card => card.map(
+      card => this.cardsDeckService.shuffleFisherYates(card).map(
         iconId => ({
           hex: this.icons[iconId],
           rotation: SingleplayerGameService.generateIconRotation(),
@@ -111,18 +107,17 @@ export class SingleplayerGameService {
 
   private getNewGameTopdeck(): void {
     if (this.playerCards.length > 0) {
-      console.log(this.gameCards);
       this.gameCards.unshift(this.playerCards.shift());
     }
   }
 
-  public generateNewGame(): void {
-    this.playerCards = SingleplayerGameService.shuffleFisherYates(this.getCardsDeck());
+  public generatePlayerAndGameDecks(): void {
+    this.playerCards = this.cardsDeckService.shuffleFisherYates(this.getCardsDeck());
     this.gameCards = [];
     this.getNewGameTopdeck();
   }
 
-  public checkIfMatchOccurred(icon: Icon): void {
+  public checkIfIconsMatchOccurred(icon: Icon): void {
     this.gameCards[0].filter(
       gameCardIcon => gameCardIcon.hex === icon.hex,
     ).length > 0
@@ -130,4 +125,15 @@ export class SingleplayerGameService {
       : null;
   }
 
+  public startGame(): void{
+    this.gameStarted$.next(true);
+  }
+
+  public endGame(): void{
+    this.gameStarted$.next(false);
+  }
+
+  public calculateResult(time: number, playerPunishment: number): number {
+    return 10000-time-playerPunishment;
+  }
 }

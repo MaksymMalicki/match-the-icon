@@ -4,6 +4,13 @@
   ></app-card>
   <app-card
     [cardIcons]="gameService.playerCards[0]"
-    (selectedIcon)="checkIfMatchOccurred($event)"
+    (selectedIcon)="checkIfIconsMatchOccurred($event)"
   ></app-card>
+</div>
+<div class="game-controls-container">
+  <div *ngIf="!gameService.gameStarted" class="start-game-results-container">
+    <button (click)="handleGameStart()" class="start-game-button">Start the game!</button>
+    <p class="final-result-label"><span class="highlight">Final result:</span> {{finalResult}}</p>
+  </div>
+  <app-timer [timerStart]="gameService.gameStarted$" (gameFinalTimeEmitted)="handleGameEnd($event)" *ngIf="gameService.gameStarted"></app-timer>
 </div>
