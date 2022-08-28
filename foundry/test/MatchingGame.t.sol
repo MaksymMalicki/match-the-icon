@@ -10,11 +10,6 @@ contract MatchingGameTest is Test {
 
     function setUp() public {
         /**
-         * @notice Points scored by the user will be passed as an argument
-         * to Submit Answer function, after the game is finished
-         */
-        uint16 memory pointsScored = 10_000;
-        /**
          * @notice Calculate hash of the right answer to prevent players
          * from knowing it during the gameplay
          * @dev Salt is added to prevent retrieveing the answer from
