@@ -9,6 +9,7 @@ pragma solidity 0.8.13;
 contract MatchingGame {
     bytes32 public salt = bytes32("182731238");
     bytes32 public hashedGameSolution;
+    mapping(address => uint16) public gameScores;
 
     constructor(bytes32 _hashedGameSolution) {
         hashedGameSolution = _hashedGameSolution;
@@ -27,6 +28,7 @@ contract MatchingGame {
         require(
             keccak256(abi.encodePacked(salt, answer)) == hashedGameSolution
         );
+        gameScores[msg.sender] = scoredPoints;
     }
 
     fallback() external payable {}

@@ -54,7 +54,7 @@ contract MatchingGameTest is Test {
 
     function testUpdateMappingAfterSubmitting() public {
         game.submitAnswer("123456789", 5_000);
-        assertEq(game.gameScores[address(this)], 5_000);
+        assertEq(game.gameScores(address(this)), 5_000);
     }
 
     fallback() external payable {}
