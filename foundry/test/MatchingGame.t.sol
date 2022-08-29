@@ -7,6 +7,7 @@ import "../src/MatchingGame.sol";
 
 contract MatchingGameTest is Test {
     MatchingGame public game;
+
     event Staked(address stakingPlayer, uint256 amountOfEtherStaked);
     event RoomCreated(address gameInstanceAddress, uint8 playerNumber);
 
@@ -27,9 +28,7 @@ contract MatchingGameTest is Test {
          */
         string memory gameSolution = "123456789";
         bytes32 salt = bytes32("182731238");
-        bytes32 hashedGameSolution = keccak256(
-            abi.encodePacked(salt, gameSolution)
-        );
+        bytes32 hashedGameSolution = keccak256(abi.encodePacked(salt, gameSolution));
         /// @dev create game instance
         game = new MatchingGame(hashedGameSolution, playerNumber);
 
@@ -77,9 +76,7 @@ contract MatchingGameTest is Test {
     }
 
     function testTriggeringFallback() public {
-        address(game).call{value: 0.5 ether}(
-            abi.encodeWithSignature("nonExistingFunction()")
-        );
+        address(game).call{value: 0.5 ether}(abi.encodeWithSignature("nonExistingFunction()"));
         assertEq(game.stakings(address(this)), 0.5 ether);
     }
 

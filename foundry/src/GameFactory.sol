@@ -5,6 +5,7 @@ import "./MatchingGame.sol";
 
 contract GameFactory {
     MatchingGame[] public games;
+
     event GameCreated(MatchingGame indexed game, address indexed creator);
 
     constructor() {}

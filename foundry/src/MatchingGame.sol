@@ -30,9 +30,7 @@ contract MatchingGame {
      * if they don't match -> user provided wrong answer
      */
     function submitAnswer(string calldata answer, uint16 scoredPoints) public {
-        require(
-            keccak256(abi.encodePacked(salt, answer)) == hashedGameSolution
-        );
+        require(keccak256(abi.encodePacked(salt, answer)) == hashedGameSolution);
         gameScores[msg.sender] = scoredPoints;
     }
 
