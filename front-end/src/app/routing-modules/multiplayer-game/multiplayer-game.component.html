@@ -1,1 +1,11 @@
-<p>multiplayer-game works!</p>
+<div *ngIf="!!web3auth.web3Props.account">
+  <div class="create-room-button-container">
+    <button class="create-room-button">Create new room!</button>
+  </div>
+  <div *ngFor="let room of openRooms" class="open-rooms-container">
+    <app-open-room-tile [openRoomData]="room"></app-open-room-tile>
+  </div>
+</div>
+<div *ngIf="!web3auth.web3Props.account" class="connect-to-metamask-button-container">
+  <button (click)="web3auth.connectToMetamask()" class="connect-to-metamask-button">🦊 Connect to metamask 🦊</button>
+</div>

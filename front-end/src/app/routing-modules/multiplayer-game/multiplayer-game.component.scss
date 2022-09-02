@@ -1,0 +1,23 @@
+@use '../../../assets/styles/color-palette';
+
+.open-rooms-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.create-room-button-container, .connect-to-metamask-button-container{
+  display: flex;
+  justify-content: center;
+  margin: 50px auto 0;
+}
+
+.create-room-button, .connect-to-metamask-button{
+  font-size: 24px;
+  background-color: var(--fierry-rose);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 15px;
+  margin: 0 auto;
+  cursor: pointer;
+}
